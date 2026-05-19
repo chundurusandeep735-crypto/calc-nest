@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free Attendance Calculator – Check your attendance percentage, classes you can skip, and how many you need to attend to reach 75%. Fast and mobile-friendly." />
+  <meta name="keywords" content="attendance calculator, bunk calculator, 75% attendance, classes needed, college attendance" />
+  <meta property="og:title" content="Attendance Calculator – CalcNest" />
+  <meta property="og:description" content="Instantly check if you're safe to bunk or how many classes you need. Free attendance calculator." />
+  <title>Attendance Calculator – CalcNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">Calc<span>Nest</span></a>
+      <div class="nav-right">
+        <a href="/" class="nav-link">← All Calculators</a>
+        <button class="dark-btn" id="darkBtn" onclick="toggleDark()" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+
+      <!-- HEADER -->
+      <header class="calc-header">
+        <div class="header-icon">📅</div>
+        <div>
+          <h1>Attendance Calculator</h1>
+          <p class="header-desc">Find out if you're safe to bunk, or how many classes you need to attend to reach your target.</p>
+        </div>
+      </header>
+
+      <!-- CALCULATOR BODY -->
+      <div class="calc-body">
+
+        <!-- INPUT SIDE -->
+        <section class="inputs-card" aria-label="Input fields">
+          <div class="field">
+            <label for="totalClasses">Total Classes Held</label>
+            <input type="number" id="totalClasses" placeholder="e.g. 80" min="1" max="9999" inputmode="numeric" />
+          </div>
+          <div class="field">
+            <label for="attended">Classes Attended</label>
+            <input type="number" id="attended" placeholder="e.g. 60" min="0" max="9999" inputmode="numeric" />
+          </div>
+          <div class="field">
+            <label for="target">
+              Target Attendance %
+              <span class="label-hint">default 75%</span>
+            </label>
+            <input type="number" id="target" placeholder="75" value="75" min="1" max="100" inputmode="numeric" />
+          </div>
+          <div class="field">
+            <label for="semTotal">
+              Total Classes in Semester
+              <span class="label-hint">optional</span>
+            </label>
+            <input type="number" id="semTotal" placeholder="e.g. 120" min="0" max="9999" inputmode="numeric" />
+          </div>
+          <button class="calc-btn" id="calcBtn" onclick="calculate()">Calculate Attendance</button>
+          <button class="reset-btn" onclick="resetAll()">Reset</button>
+        </section>
+
+        <!-- RESULTS SIDE -->
+        <section class="results-card" id="resultsCard" aria-live="polite" aria-label="Results">
+          <div class="results-placeholder" id="placeholder">
+            <div class="placeholder-icon">📊</div>
+            <p>Enter your class details<br>and hit Calculate</p>
+          </div>
+          <div class="results-content" id="resultsContent" style="display:none;">
+            <!-- filled by JS -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <section class="info-section">
+        <h2>How does the attendance calculator work?</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-num">01</div>
+            <h3>Current %</h3>
+            <p>Divides classes attended by total classes held, multiplied by 100.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-num">02</div>
+            <h3>Can I bunk?</h3>
+            <p>If you're above target, calculates max classes you can miss while staying safe.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-num">03</div>
+            <h3>Classes needed</h3>
+            <p>If below target, calculates consecutive classes required to reach your goal.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-num">04</div>
+            <h3>Semester forecast</h3>
+            <p>Enter total semester classes for an end-of-term projection.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is the minimum attendance required in college?</summary>
+            <p>Most Indian universities and colleges require a minimum of 75% attendance. Some colleges require 80% or 85%. Check with your institution to confirm.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How is attendance percentage calculated?</summary>
+            <p>Attendance % = (Classes Attended ÷ Total Classes Held) × 100. For example, if you attended 60 out of 80 classes, your attendance is 75%.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How many classes can I bunk if I have 80% attendance?</summary>
+            <p>It depends on your total classes and target %. Use the calculator above — enter your numbers to get an exact "safe to bunk" count.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use this for school attendance too?</summary>
+            <p>Yes! This calculator works for any class-based attendance — school, college, university, coaching classes, etc.</p>
+          </details>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="font-size: 1.2rem;">Calc<span>Nest</span></div>
+        <p>Free calculators for students & professionals. No sign-up, no ads clutter.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Academic</h4>
+        <a href="#">Attendance</a>
+        <a href="#">Percentage</a>
+        <a href="#">CGPA</a>
+        <a href="#">Age</a>
+      </div>
+      <div class="footer-col">
+        <h4>Finance</h4>
+        <a href="#">EMI</a>
+        <a href="#">GST</a>
+        <a href="#">SIP</a>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 CalcNest · Built for students everywhere</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
